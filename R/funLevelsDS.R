@@ -9,7 +9,8 @@
 funLevelsDS <- function(x, fun_message){
   dsBase::checkPermissivePrivacyControlLevel(c('permissive', 'banana')) ## Check privacy mode setting
   data <- eval(parse(text=x), envir = parent.frame()) ## Load object withing function
-  levels_out <- levels(data) ## Get levels
+  data_fac <- as.factor(data) # Convert object to a factor if it isn't already
+  levels_out <- levels(data_fac) ## Get levels
   .checkLevelsDisclosureRisk(data, levels_out) ## Check disclosure issues
 
   return(
@@ -80,16 +81,18 @@ funLevelsDS <- function(x, fun_message){
 .throwErrorIfRisk <- function(input, levels_out, threshold) {
 
   if (threshold < length(levels_out)) {
-    cli::cli_abort(
-      c(
-        "x" = "The levels cannot be returned due to a disclosure risk",
-        "i" = "The length of the variable is {length(input)} and the number of levels is {length(levels_out)}",
-        "i" = "Based on current disclosure settings the maximum number of levels that can be returned is {threshold}",
-        call = NULL
+    stop(
+      paste0(
+        "The levels cannot be returned due to a disclosure risk. ",
+        "The length of the variable is ",
+        length(input), ". ",
+        "and the number of levels is ",
+        length(levels_out), ". ",
+        "Based on current disclosure settings the maximum number of levels that can be returned is ",
+        threshold, ". "),
+        .call = NULL
       )
-    )
   }
-
 }
 
 
