@@ -1,10 +1,10 @@
 Package: dsExample
-Title: What the Package Does (One Line, Title Case)
+Title: Provide an example of DataSHIELD server-side package.
 Version: 1.0.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Tim", "Cadman", , "t.j.cadman@umcg.nl", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7682-5645"))
+Description: A complete DataSHIELD package containing one exported function as an example how to create a DataSHIELD package.
 License: LGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
